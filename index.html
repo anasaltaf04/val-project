@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Ayesha 💖</title>
+
+<style>
+body {
+    margin: 0;
+    background: #ffb3e6; /* light magenta */
+    font-family: "Segoe UI", sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+h1 {
+    margin-top: 120px;
+    color: #800020; /* burgundy */
+    font-size: 42px;
+}
+
+button {
+    background: #ffd6ec; /* soft pink */
+    color: #800020;
+    border: none;
+    padding: 20px 45px;
+    font-size: 22px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: #ffc2e6;
+}
+
+#buttons {
+    margin-top: 60px;
+    position: relative;
+}
+
+#noBtn {
+    position: absolute;
+}
+
+/* Celebration overlay */
+#celebration {
+    position: fixed;
+    inset: 0;
+    background: #ffb3e6;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+#celebration h2 {
+    font-size: 60px;
+    color: #800020;
+    animation: pop 1s ease forwards;
+}
+
+.heart {
+    position: absolute;
+    font-size: 24px;
+    animation: floatUp 4s linear infinite;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.3); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-800px) scale(1.5);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>will you be my valentine, ayesha? 💖</h1>
+
+<div id="buttons">
+    <button id="yesBtn">YES 💘</button>
+    <button id="noBtn">NO 🙄</button>
+</div>
+
+<div id="celebration">
+    <h2>i knew you'd say yes! 💕</h2>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const celebration = document.getElementById("celebration");
+
+// runaway effect
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 200);
+    const y = Math.random() * (window.innerHeight - 200);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    yesBtn.style.transform = "scale(1.1)";
+});
+
+// celebration animation
+yesBtn.addEventListener("click", () => {
+    document.body.innerHTML = "";
+    document.body.appendChild(celebration);
+    celebration.style.display = "flex";
+
+    // spawn floating hearts
+    for (let i = 0; i < 40; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "-20px";
+        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        celebration.appendChild(heart);
+    }
+});
+</script>
+
+</body>
+</html>
